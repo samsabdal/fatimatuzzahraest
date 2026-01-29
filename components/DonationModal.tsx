@@ -55,7 +55,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose, w
 
           <button 
             onClick={handleDonateNow}
-            className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-amber-200"
+            className="w-full md:hidden bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-amber-200"
           >
             <Heart size={20} className="fill-current" />
             Donate Now
