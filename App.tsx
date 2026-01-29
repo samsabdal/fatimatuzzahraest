@@ -242,11 +242,16 @@ const App: React.FC = () => {
             {PROGRAMS.map((program, idx) => (
               <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100 flex flex-col h-full">
                 <div className="h-48 overflow-hidden bg-slate-200 relative">
-                   <GeminiImage 
+                   {/* <GeminiImage 
                       prompt={program.imagePrompt}
                       alt={program.title}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                       fallbackSrc={`https://picsum.photos/400/300?random=${idx}`}
+                   /> */}
+                   <img 
+                      src='/image.png' 
+                      alt={program.title}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                    />
                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-emerald-800 shadow-sm">
                      {program.ageGroup || "All Ages"}
