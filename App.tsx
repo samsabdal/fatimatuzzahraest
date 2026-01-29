@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin, Mail, User, BookOpen, Heart, ArrowRight, MessageCircle } from 'lucide-react';
 import { GeminiImage } from './components/GeminiImage';
 import { DonationModal } from './components/DonationModal';
@@ -56,6 +56,30 @@ const App: React.FC = () => {
   const [isDonationOpen, setIsDonationOpen] = useState(false);
   const [contactForm, setContactForm] = useState<ContactFormState>({ name: '', email: '', message: '' });
 
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.setAttribute('data-generated','app-animations');
+    style.innerHTML = `
+      @media (prefers-reduced-motion: reduce) {
+        .fade-in-up, .mobile-menu-panel { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+      }
+
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+      .fade-in-up { animation: fadeInUp 520ms ease both; }
+
+      .mobile-overlay { position: fixed; inset: 0; background: rgba(2,6,23,0.45); z-index: 45; }
+      .mobile-menu-panel { transform-origin: top; transform: translateY(-6px); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; z-index:46; }
+      .mobile-menu-panel.open { transform: translateY(0); opacity: 1; }
+
+      .program-card { transition: transform 220ms ease, box-shadow 220ms ease; }
+      .program-card:active, .program-card:focus { transform: translateY(-6px) scale(1.01); }
+
+      .tap-target { padding: 0.7rem 1rem; border-radius: 0.75rem; }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -75,7 +99,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo / Brand */}
           <div className="flex items-center gap-3">
-             <img src="/logo.svg" alt="Fatima Tuz Zahra logo" className="w-10 h-10 rounded-full border-2 border-amber-500 object-cover bg-emerald-700" />
+             <img src="/logo.svg" alt="Fatima Tuz Zahra logo" loading="eager" decoding="async" width={40} height={40} className="w-10 h-10 rounded-full border-2 border-amber-500 object-cover bg-emerald-700" />
              <div className="leading-tight">
                <h1 className="font-serif font-bold text-emerald-900 text-lg md:text-xl tracking-tight">Fatima Tuz Zahra</h1>
                <p className="text-xs text-amber-600 font-semibold tracking-wide">EDUCATION & SOCIAL TRUST</p>
@@ -97,27 +121,30 @@ const App: React.FC = () => {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button className="md:hidden text-slate-700" onClick={toggleMenu}>
+          <button className="md:hidden text-slate-700" onClick={toggleMenu} aria-expanded={isMenuOpen} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
-            <div className="flex flex-col p-6 space-y-4">
-              <a href="#home" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Home</a>
-              <a href="#about" onClick={toggleMenu} className="text-lg font-medium text-slate-700">About</a>
-              <a href="#programs" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Programs</a>
-              <a href="#contact" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Contact</a>
-              <button 
-                 onClick={() => { setIsDonationOpen(true); toggleMenu(); }}
-                 className="bg-amber-600 text-white py-3 rounded-lg font-bold w-full"
-              >
-                Donate Now
-              </button>
+          <>
+            <div className="mobile-overlay md:hidden" onClick={() => setIsMenuOpen(false)} />
+            <div className="md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full mobile-menu-panel open">
+              <div className="flex flex-col p-6 space-y-4">
+                <a href="#home" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Home</a>
+                <a href="#about" onClick={toggleMenu} className="text-lg font-medium text-slate-700">About</a>
+                <a href="#programs" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Programs</a>
+                <a href="#contact" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Contact</a>
+                <button 
+                   onClick={() => { setIsDonationOpen(true); toggleMenu(); }}
+                   className="bg-amber-600 text-white py-3 rounded-lg font-bold w-full tap-target"
+                >
+                  Donate Now
+                </button>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </nav>
 
@@ -135,7 +162,9 @@ const App: React.FC = () => {
           <img 
             src="/logo1.png" 
             alt="Hero Background" 
-            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            className="w-full h-full object-cover fade-in-up"
           />
         </div>
 
@@ -200,7 +229,9 @@ const App: React.FC = () => {
                 <img 
                   src='/image_ammijan.png' 
                   alt="Education and Charity" 
-                  className="w-full aspect-[4/3] object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full aspect-[4/3] object-cover fade-in-up"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
                    <p className="text-white font-medium">Empowering the next generation</p>
@@ -222,7 +253,7 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {OFFICE_BEARERS.map((member, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100 flex flex-col items-center text-center group">
+              <div key={idx} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100 flex flex-col items-center text-center group fade-in-up" style={{ animationDelay: `${idx * 60}ms` }}>
                 <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                   <User size={32} />
                 </div>
@@ -249,7 +280,7 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {PROGRAMS.map((program, idx) => (
-              <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100 flex flex-col h-full">
+              <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-100 flex flex-col h-full program-card fade-in-up" style={{ animationDelay: `${idx * 90}ms` }}>
                 <div className="h-48 overflow-hidden bg-slate-200 relative">
                    {/* <GeminiImage 
                       prompt={program.imagePrompt}
@@ -258,9 +289,11 @@ const App: React.FC = () => {
                       fallbackSrc={`https://picsum.photos/400/300?random=${idx}`}
                    /> */}
                    <img 
-                      src={program.image}
-                      alt={program.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                     src={program.image}
+                     alt={program.title}
+                     loading="lazy"
+                     decoding="async"
+                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                    />
                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-emerald-800 shadow-sm">
                      {program.ageGroup || "All Ages"}
@@ -307,7 +340,7 @@ const App: React.FC = () => {
                   <div>
                     <h5 className="font-bold text-lg">Visit Us</h5>
                     <p className="text-emerald-100 text-sm leading-relaxed max-w-xs">
-                      Khatia No. 1012, Plot No. 188, Mehendipur, Chandini Chowk, Lalbag, Cuttack, Odisha, PIN-753002
+                      Mehendipeer, Cuttack, Odisha, PIN-753002
                     </p>
                   </div>
                 </div>
