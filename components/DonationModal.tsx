@@ -34,7 +34,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose, w
 
           <div className="bg-white p-2 border border-gray-200 rounded-lg shadow-inner">
              <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=fatimatuzzahra@upi&pn=FatimaTuzZahraTrust&cu=INR" 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=qr917978796166-0228@unionbankofindia&pn=FatimaTuzZahraTrust&cu=INR" 
               alt="Donation QR Code" 
               className="w-40 h-40"
             />
@@ -43,9 +43,9 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose, w
           <div className="w-full bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
             <h4 className="text-emerald-800 font-bold mb-2">Bank Details</h4>
             <div className="text-sm text-gray-700 space-y-1">
-              <p><span className="font-semibold">Bank Name:</span> STATE BANK OF INDIA</p>
-              <p><span className="font-semibold">A/C No:</span> XXXXXX1234</p>
-              <p><span className="font-semibold">IFSC:</span> SBIN000XXXX</p>
+              <p><span className="font-semibold">Bank Name:</span> UNION BANK OF INDIA</p>
+              <p><span className="font-semibold">A/C No:</span> 718201010050225</p>
+              <p><span className="font-semibold">IFSC:</span> UBIN0571822</p>
             </div>
           </div>
 
