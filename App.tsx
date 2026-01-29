@@ -122,11 +122,16 @@ const App: React.FC = () => {
         {/* Background Image using AI */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/90 to-emerald-800/70 z-10"></div>
-          <GeminiImage 
+          {/* <GeminiImage 
             prompt="Cinematic wide shot of a beautiful modern islamic school building for girls, golden hour, architecture, peaceful garden, high resolution" 
             alt="Hero Background" 
             className="w-full h-full object-cover"
             fallbackSrc="https://picsum.photos/1920/1080?blur=2"
+          /> */}
+          <img 
+            src="/logo1.png" 
+            alt="Hero Background" 
+            className="w-full h-full object-cover"
           />
         </div>
 
