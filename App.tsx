@@ -389,7 +389,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-               <h3 className="text-white font-serif font-bold text-xl mb-2">Fatima Tuz Zahra Trust</h3>
+               <h3 className="text-white font-serif font-bold text-xl mb-2">Fatima Tuz Zahra Education and Social Trust</h3>
                <p className="text-sm">Registration No: 40392307579</p>
             </div>
             <div className="flex space-x-6 mb-6 md:mb-0">
@@ -399,6 +399,7 @@ const App: React.FC = () => {
           </div>
           <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm">
             <p>&copy; {new Date().getFullYear()} Fatima Tuz Zahra Education and Social Trust. All rights reserved.</p>
+            <p>Designed and Developed by <a href="https://www.codescool.in/" className="text-emerald-400 hover:text-emerald-300 transition-colors"> Codes Cool</a></p>
           </div>
         </div>
       </footer>
