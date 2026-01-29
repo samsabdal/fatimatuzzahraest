@@ -18,23 +18,27 @@ const OFFICE_BEARERS: OfficeBearer[] = [
 
 const PROGRAMS: Program[] = [
   {
+    image: '/image_kid.png',
     title: "Early Childhood",
     ageGroup: "3-6 yrs",
     description: "Building strong foundations with basic alphabets, social skills, and moral values in a nurturing environment.",
     imagePrompt: "Happy muslim little girls 4 years old learning alphabets in a colorful classroom, joyful, bright lighting, hijab"
   },
   {
+    image: '/image_1.png',
     title: "Primary Level",
     ageGroup: "6-12 yrs",
     description: "Comprehensive curriculum covering Math, Science, and Islamic Studies to develop well-rounded personalities.",
     imagePrompt: "Muslim girls in school uniform studying science in a laboratory, holding test tubes, curious faces, modern education"
   },
   {
+    image: '/image_2.png',
     title: "Senior Education",
     description: "Focusing on vocational training and digital literacy to prepare young women for the modern workforce.",
     imagePrompt: "Young muslim women working on computers in a modern digital library, focused, professional, headscarves"
   },
   {
+    image: '/image_3.png',
     title: "Special Programs",
     description: "Empowering initiatives focused on women's leadership, community health, and social responsibility.",
     imagePrompt: "Muslim women sitting in a circle discussing community leadership, outdoor garden setting, sunlight, empowering atmosphere"
@@ -187,11 +191,16 @@ const App: React.FC = () => {
             {/* AI Image */}
             <div className="lg:w-1/2 order-1 lg:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                <GeminiImage 
+                {/* <GeminiImage 
                   prompt="A heartwarming photo of an indian muslim female teacher helping a young girl read a book, warm sunlight, soft focus background, inspirational" 
                   alt="Education and Charity" 
                   className="w-full aspect-[4/3] object-cover"
                   fallbackSrc="https://picsum.photos/600/500"
+                /> */}
+                <img 
+                  src='/image_ammijan.png' 
+                  alt="Education and Charity" 
+                  className="w-full aspect-[4/3] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
                    <p className="text-white font-medium">Empowering the next generation</p>
@@ -249,7 +258,7 @@ const App: React.FC = () => {
                       fallbackSrc={`https://picsum.photos/400/300?random=${idx}`}
                    /> */}
                    <img 
-                      src='/image.png' 
+                      src={program.image}
                       alt={program.title}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                    />

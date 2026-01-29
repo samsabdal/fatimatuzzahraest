@@ -4,6 +4,7 @@ export interface OfficeBearer {
 }
 
 export interface Program {
+  image?: string;
   title: string;
   ageGroup?: string;
   description: string;
