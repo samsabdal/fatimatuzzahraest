@@ -71,9 +71,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo / Brand */}
           <div className="flex items-center gap-3">
-             <div className="w-10 h-10 bg-emerald-700 rounded-full flex items-center justify-center text-white font-bold font-serif border-2 border-amber-500">
-               FTZ
-             </div>
+             <img src="/logo.svg" alt="Fatima Tuz Zahra logo" className="w-10 h-10 rounded-full border-2 border-amber-500 object-cover bg-emerald-700" />
              <div className="leading-tight">
                <h1 className="font-serif font-bold text-emerald-900 text-lg md:text-xl tracking-tight">Fatima Tuz Zahra</h1>
                <p className="text-xs text-amber-600 font-semibold tracking-wide">EDUCATION & SOCIAL TRUST</p>
