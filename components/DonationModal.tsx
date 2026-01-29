@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, MessageCircle } from 'lucide-react';
+import { X, MessageCircle, Heart } from 'lucide-react';
 
 interface DonationModalProps {
   isOpen: boolean;
@@ -9,6 +9,10 @@ interface DonationModalProps {
 
 export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose, whatsappNumber }) => {
   if (!isOpen) return null;
+
+  const handleDonateNow = () => {
+    window.location.href = "upi://pay?pa=qr917978796166-0228@unionbankofindia&pn=FatimaTuzZahraTrust&cu=INR";
+  };
 
   const handleWhatsappRedirect = () => {
     const text = encodeURIComponent("Assalamu Alaikum, I have sent a donation. Here is the screenshot.");
@@ -48,6 +52,14 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose, w
               <p><span className="font-semibold">IFSC:</span> UBIN0571822</p>
             </div>
           </div>
+
+          <button 
+            onClick={handleDonateNow}
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-amber-200"
+          >
+            <Heart size={20} className="fill-current" />
+            Donate Now
+          </button>
 
           <button 
             onClick={handleWhatsappRedirect}
