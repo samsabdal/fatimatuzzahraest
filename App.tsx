@@ -8,13 +8,6 @@ import { OfficeBearer, Program, ContactFormState } from './types';
 const WHATSAPP_NUMBER = "917978796166"; // Clean format for API
 const DISPLAY_PHONE = "+91 7978796166";
 
-const OFFICE_BEARERS: OfficeBearer[] = [
-  { name: "Md Gulam Jilani Khan", role: "Secretary" },
-  { name: "Md Gulam Subhani Khan", role: "Treasurer" },
-  { name: "Md Raza Khan", role: "Board Member" },
-  { name: "Anamul Khan", role: "Board Member" },
-  { name: "Abdul Jabbar Khan", role: "Board Member" },
-];
 
 const PROGRAMS: Program[] = [
   {
@@ -238,29 +231,6 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- Office Bearers --- */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-slate-900">Office Bearers</h2>
-            <div className="w-20 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-            <p className="text-slate-600 mt-4 max-w-xl mx-auto">The dedicated team leading our mission towards a brighter future.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {OFFICE_BEARERS.map((member, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100 flex flex-col items-center text-center group fade-in-up" style={{ animationDelay: `${idx * 60}ms` }}>
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                  <User size={32} />
-                </div>
-                <h3 className="font-bold text-slate-800 text-lg mb-1">{member.name}</h3>
-                <p className="text-amber-600 font-medium text-sm uppercase tracking-wide">{member.role}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
